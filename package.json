@@ -1,0 +1,33 @@
+{
+    "name": "pendingslist",
+    "version": "1.0.0",
+    "description": "Another To do list",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon src/index",
+        "start": "NODE_ENV=production node src/index"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/alejandromunozc/PendingsList.git"
+    },
+    "author": "Cristian Alejandro Muñoz Cardona (alejandromunozc)",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/alejandromunozc/PendingsList/issues"
+    },
+    "homepage": "https://github.com/alejandromunozc/PendingsList#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "connect-flash": "^0.1.1",
+        "dotenv": "^8.2.0",
+        "express": "^4.17.1",
+        "express-handlebars": "^5.1.0",
+        "express-session": "^1.17.1",
+        "method-override": "^3.0.0",
+        "mongoose": "^5.10.6",
+        "passport": "^0.4.1",
+        "passport-local": "^1.0.0"
+    },
+    "devDependencies": {}
+}

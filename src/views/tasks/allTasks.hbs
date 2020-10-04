@@ -1,0 +1,200 @@
+<div class="row">
+    <div class="col-md-4">
+        <h3 class="text-center">To Do</h3>
+        <div class="row">
+            <div class="col-md-12 p-2 todoShow">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex align-items-center">
+                            Nothing to do yet.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {{#each tasks}}
+            {{#ifeq state "ToDo"}}
+            <div class="col-md-12 p-2 todo">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title d-flex align-items-center">
+                            {{title}}
+                        </h4>
+                        <p>{{description}}</p>
+                        <hr>
+                        <p><strong>Deadline:</strong> {{deadline}} at {{time}}</p>
+                        <p><strong>Priority:</strong>
+                            {{#ifeq priority "Low"}}
+                            <span class="badge badge-success">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "Medium"}}
+                            <span class="badge badge-warning">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "High"}}
+                            <span class="badge badge-danger">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "Urgent"}}
+                            <span class="badge badge-danger">{{priority}} <i
+                                    class="fa fa-exclamation-circle"></i></span>
+                            {{/ifeq}}
+                        </p>
+                        <form action="/task/edit/stateFw/{{_id}}?_method=PUT" method="POST">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" class="btn btn-primary btn-sm btn-block">
+                                Move to In Process <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="/task/edit/{{_id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                        <form action="/task/delete/{{_id}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/ifeq}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3 class="text-center">In Process</h3>
+        <div class="row">
+            <div class="col-md-12 p-2 processShow">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex align-items-center">
+                            Nothing in process yet.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {{#each tasks}}
+            {{#ifeq state "Process"}}
+            <div class="col-md-12 p-2 process">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title d-flex align-items-center">
+                            {{title}}
+                        </h4>
+                        <p>{{description}}</p>
+                        <hr>
+                        <p><strong>Deadline:</strong> {{deadline}} at {{time}}</p>
+                        <p><strong>Priority:</strong>
+                            {{#ifeq priority "Low"}}
+                            <span class="badge badge-success">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "Medium"}}
+                            <span class="badge badge-warning">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "High"}}
+                            <span class="badge badge-danger">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "Urgent"}}
+                            <span class="badge badge-danger">{{priority}} <i
+                                    class="fa fa-exclamation-circle"></i></span>
+                            {{/ifeq}}
+                        </p>
+                        <div class="d-flex justify-content-between">
+                            <form action="/task/edit/statebk/{{_id}}?_method=PUT" method="POST" class="d-flex">
+                                <input type="hidden" name="_method" value="PUT">
+                                <button type="submit" class="btn btn-primary btn-sm btn-block">
+                                    <i class="fa fa-arrow-left"></i> Back to Do
+                                </button>
+                            </form>
+                            <form action="/task/edit/statefw/{{_id}}?_method=PUT" method="POST" class="d-flex">
+                                <input type="hidden" name="_method" value="PUT">
+                                <button type="submit" class="btn btn-primary btn-sm btn-block">
+                                    Move to Finish <i class="fa fa-arrow-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="/task/edit/{{_id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                        <form action="/task/delete/{{_id}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/ifeq}}
+            {{/each}}
+        </div>
+    </div>
+    <div class="col-md-4">
+        <h3 class="text-center">Finish</h3>
+        <div class="row">
+            <div class="col-md-12 p-2 finishShow">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title d-flex align-items-center">
+                            Nothing finished yet.
+                        </h5>
+                    </div>
+                </div>
+            </div>
+            {{#each tasks}}
+            {{#ifeq state "Finish"}}
+            <div class="col-md-12 p-2 finish">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title d-flex align-items-center">
+                            {{title}}
+                        </h4>
+                        <p>{{description}}</p>
+                        <hr>
+                        <p><strong>Deadline:</strong> {{deadline}} at {{time}}</p>
+                        <p><strong>Priority:</strong>
+                            {{#ifeq priority "Low"}}
+                            <span class="badge badge-success">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "Medium"}}
+                            <span class="badge badge-warning">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "High"}}
+                            <span class="badge badge-danger">{{priority}}</span>
+                            {{/ifeq}}
+                            {{#ifeq priority "Urgent"}}
+                            <span class="badge badge-danger">{{priority}} <i
+                                    class="fa fa-exclamation-circle"></i></span>
+                            {{/ifeq}}
+                        </p>
+                        <form action="/task/edit/statebk/{{_id}}?_method=PUT" method="POST" class="d-flex">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" class="btn btn-primary btn-sm btn-block">
+                                <i class="fa fa-arrow-left"></i> Back to In Process
+                            </button>
+                        </form>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="/task/edit/{{_id}}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
+                        <form action="/task/delete/{{_id}}?_method=DELETE" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {{/ifeq}}
+            {{/each}}
+        </div>
+    </div>
+</div>
+<div class="fixed-bottom">
+    <div class="row">
+        <div class="col-auto mr-auto">
+        </div>
+        <div class="col-auto ">
+            <span class="new-task "><a href="/task/new">
+                    <i class="fa fa-plus-circle"></i></a></span>
+        </div>
+    </div>
+</div>

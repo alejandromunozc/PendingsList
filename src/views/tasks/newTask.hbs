@@ -1,0 +1,39 @@
+<div class="col-sm-12 col-md-6 mx-auto">
+    <div class="card text-center">
+        <div class="card-header">
+            <h3>New Task</h3>
+        </div>
+        <div class="card-body">
+            <form action="/task/new" method="POST">
+                <div class="form-group">
+                    <input type="text" name="title" class="form-control" placeholder="Title" required autofocus>
+                </div>
+                <div class="form-group">
+                    <textarea name="description" class="form-control" rows="4" required placeholder="Description"></textarea>
+                </div>
+                <label for="deadline">Deadline</label>
+                <div class="form-group d-flex">
+                    <input type="date" name="deadline" class="form-control">
+                    <input type="time" name="time" class="form-control">
+                </div>
+                <div class="form-group">
+                    <select class="custom-select" name="priority">
+                        <option value="none"> -- Select priority -- </option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                        <option value="Urgent">Urgent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block">
+                        Save
+                    </button>
+                </div>
+            </form>
+            <a href="/task" class="btn btn-outline-danger btn-block">
+                Cancel
+            </a>
+        </div>
+    </div>
+</div>
